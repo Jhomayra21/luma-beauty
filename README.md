@@ -22,7 +22,7 @@ GitHub guarda el código y facilita llevarlo a la VM. No es requisito técnico p
 
 Las capturas muestran Ubuntu, Nginx instalado y activo, y reglas locales para SSH y Nginx. Esta web es estática: no hace falta instalar Node.js en la VM, ejecutar un proceso backend, ni usar `npm run dev` en producción.
 
-Conéctate por SSH a la VM y ejecuta (reemplaza `TU_USUARIO`):
+Conéctate por SSH a la VM y ejecuta estos comandos:
 
 ```bash
 sudo apt update
@@ -54,4 +54,5 @@ Los comandos `iptables` de las capturas añaden reglas manuales temporales. Para
 - El formulario de correo es solo una demostración visual; no envía ni almacena correos.
 
 El logo, la marca y los productos son ficticios. Vue y las fuentes se descargan de servicios CDN al abrir la página; hace falta conexión a internet desde el navegador.
+
 

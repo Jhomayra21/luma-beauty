@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fbf5f2" />
+  <meta name="description" content="Descubre maquillaje para sentirte bien en tu propia piel." />
+  <title>Luma Beauty — Tu belleza, a tu manera</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div id="app" v-cloak>
+    <div class="announcement">Un pequeño detalle para ti: envío gratis en compras mayores a $50</div>
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="Luma Beauty, inicio"><span class="brand-mark">L</span><span>LUMA<span class="brand-light"> BEAUTY</span></span></a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="#productos">Productos</a><a href="#historia">Nuestra esencia</a><a href="#consejos">Consejos</a>
+      </nav>
+      <button class="bag-button" @click="showBag = !showBag" :aria-label="'Abrir bolsa, ' + cartCount + ' artículos'">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bag-count">{{ cartCount }}</span>
+      </button>
+    </header>
+
+    <main>
+      <section id="inicio" class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-line"></span> BELLEZA CON INTENCIÓN</p>
+          <h1>Tu belleza,<br><em>a tu manera.</em></h1>
+          <p class="hero-text">Color, cuidado y un ratito para ti. Encuentra esos favoritos que te hacen sentir increíble, todos los días.</p>
+          <a class="button button-dark" href="#productos">Descubrir colección <span aria-hidden="true">↗</span></a>
+          <div class="hero-note"><span class="note-stars">★★★★★</span><span>Hecho para acompañarte, no para cambiarte.</span></div>
+        </div>
+        <div class="hero-art" aria-label="Ilustración de cosméticos en tonos rosa y terracota" role="img">
+          <div class="art-sun"></div><div class="art-arch"></div><div class="art-shadow"></div>
+          <div class="cosmetic cosmetic-tube"><div class="tube-cap"></div><span class="tube-label">LUMA<br><small>GLOW</small></span></div>
+          <div class="cosmetic cosmetic-pot"><div class="pot-lid"></div><span>soft<br>blush</span></div>
+          <div class="cosmetic cosmetic-lip"><div class="lip-cap"></div><span>L</span></div>
+          <div class="art-sparkle sparkle-one">✳</div><div class="art-sparkle sparkle-two">✳</div>
+          <span class="art-caption">RITUALES PEQUEÑOS, DÍAS MÁS LUMINOSOS</span>
+        </div>
+        <div class="hero-bottom">CUIDADO · COLOR · CONFIANZA</div>
+      </section>
+
+      <section id="productos" class="products-section">
+        <div class="section-heading">
+          <div><p class="eyebrow"><span class="eyebrow-line"></span> SELECCIÓN LUMA</p><h2>Tus nuevos favoritos</h2></div>
+          <p class="section-intro">Fórmulas que se sienten bien y colores que hablan de ti.</p>
+        </div>
+        <div class="toolbar">
+          <div class="filters" aria-label="Filtrar productos">
+            <button v-for="category in categories" :key="category" @click="selectedCategory = category" :class="{ active: selectedCategory === category }">{{ category }}</button>
+          </div>
+          <label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><input v-model="search" type="search" placeholder="Buscar producto" aria-label="Buscar producto"></label>
+        </div>
+        <p v-if="loading" class="status-message">Preparando tus favoritos…</p>
+        <p v-else-if="loadError" class="status-message">No pudimos cargar el catálogo. Revisa que productos.json esté junto a esta página.</p>
+        <div v-else class="product-grid">
+          <article v-for="product in filteredProducts" :key="product.id" class="product-card">
+            <div class="product-visual" :class="product.visualClass">
+              <span v-if="product.badge" class="product-badge">{{ product.badge }}</span>
+              <button class="favorite-button" @click="toggleFavorite(product.id)" :aria-label="favorites.includes(product.id) ? 'Quitar de favoritos' : 'Añadir a favoritos'">{{ favorites.includes(product.id) ? '♥' : '♡' }}</button>
+              <div class="product-art" aria-hidden="true"><span class="art-product-name">{{ product.artName }}</span></div>
+            </div>
+            <div class="product-info"><div><p class="product-category">{{ product.category }}</p><h3>{{ product.name }}</h3></div><strong>${{ product.price.toFixed(2) }}</strong></div>
+            <button class="add-button" @click="addToBag(product)">Añadir a la bolsa <span aria-hidden="true">+</span></button>
+          </article>
+          <p v-if="!filteredProducts.length" class="status-message empty-result">No encontramos productos con esa búsqueda.</p>
+        </div>
+      </section>
+
+      <section id="historia" class="brand-story">
+        <div class="story-art"><div class="story-circle"><span>your<br>kind of<br><em>glow</em></span></div><span class="story-star">✳</span></div>
+        <div class="story-copy"><p class="eyebrow"><span class="eyebrow-line"></span> NUESTRA ESENCIA</p><h2>La belleza se siente.<br><em>No se impone.</em></h2><p>Creemos en productos sencillos, tonos que te representan y rutinas que se disfrutan. Lo mejor de tu look es que siga siendo tuyo.</p><a href="#consejos" class="text-link">Conoce nuestros consejos <span>→</span></a></div>
+      </section>
+
+      <section id="consejos" class="newsletter">
+        <p class="eyebrow">UNA NOTA BONITA EN TU BANDEJA</p><h2>Un poco de inspiración,<br>de vez en cuando.</h2><p>Recibe novedades, consejos fáciles y pequeños detalles para tu rutina.</p>
+        <form @submit.prevent="subscribe"><label class="newsletter-input"><input v-model="email" type="email" required placeholder="Tu correo electrónico" aria-label="Tu correo electrónico"><button type="submit" aria-label="Suscribirme">→</button></label></form>
+        <p class="subscribe-message" role="status">{{ subscribeMessage }}</p>
+      </section>
+    </main>
+
+    <div v-if="showBag" class="toast" role="status"><span>♡</span> {{ lastAdded ? lastAdded + ' se añadió a tu bolsa.' : 'Tu bolsa está lista para tus favoritos.' }} <button @click="showBag = false" aria-label="Cerrar">×</button></div>
+    <footer class="site-footer"><a class="brand footer-brand" href="#inicio"><span class="brand-mark">L</span><span>LUMA<span class="brand-light"> BEAUTY</span></span></a><p>Belleza a tu manera. Hecho con cariño.</p><span>© 2026 Luma Beauty · Proyecto académico</span></footer>
+  </div>
+</body>
+</html>

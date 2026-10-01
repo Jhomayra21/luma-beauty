@@ -1,0 +1,10 @@
+[
+  { "id": 1, "name": "Skin Tint Lumière", "category": "Rostro", "price": 24.00, "badge": "Favorito", "visualClass": "tone-peach art-peach", "artName": "LUMIÈRE" },
+  { "id": 2, "name": "Bálsamo Rosé", "category": "Labios", "price": 16.00, "badge": "Nuevo", "visualClass": "tone-rose art-rose", "artName": "ROSÉ" },
+  { "id": 3, "name": "Polvo Soft Focus", "category": "Rostro", "price": 21.00, "badge": "", "visualClass": "tone-sand art-sand", "artName": "SOFT" },
+  { "id": 4, "name": "Máscara Nocturne", "category": "Ojos", "price": 19.00, "badge": "Más querido", "visualClass": "tone-lilac art-lilac", "artName": "NOCTURNE" },
+  { "id": 5, "name": "Rubor Petal", "category": "Rostro", "price": 18.00, "badge": "", "visualClass": "tone-rose art-rose", "artName": "PETAL" },
+  { "id": 6, "name": "Gloss Miel", "category": "Labios", "price": 14.00, "badge": "Nuevo", "visualClass": "tone-sand art-sand", "artName": "MIEL" },
+  { "id": 7, "name": "Paleta Tierra", "category": "Ojos", "price": 27.00, "badge": "", "visualClass": "tone-peach art-peach", "artName": "TIERRA" },
+  { "id": 8, "name": "Iluminador Aura", "category": "Rostro", "price": 22.00, "badge": "Favorito", "visualClass": "tone-lilac art-lilac", "artName": "AURA" }
+]

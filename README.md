@@ -8,16 +8,12 @@ Abre `index.html` en un navegador conectado a internet. Vue 3 y las fuentes se c
 
 ## Subir el proyecto a GitHub
 
-1. Crea un repositorio nuevo en GitHub. Para seguir los comandos de despliegue más abajo, el repositorio debe ser público.
-2. Abre PowerShell dentro de esta carpeta y ejecuta, cambiando `TU_USUARIO` por tu usuario de GitHub:
+El repositorio de este proyecto ya está creado en [github.com/Jhomayra21/luma-beauty](https://github.com/Jhomayra21/luma-beauty) y la página ya fue subida. Para publicar futuras modificaciones desde PowerShell en esta carpeta:
 
 ```powershell
-git init
 git add .
-git commit -m "Crear página Luma Beauty"
-git branch -M main
-git remote add origin https://github.com/TU_USUARIO/luma-beauty.git
-git push -u origin main
+git commit -m "Actualizar página"
+git push
 ```
 
 GitHub guarda el código y facilita llevarlo a la VM. No es requisito técnico para que Nginx muestre una página: también podrías copiar los archivos directamente a la máquina. Para el flujo que empezaron en clase, GitHub es una manera práctica de transferir y actualizar la web.
@@ -31,7 +27,7 @@ Conéctate por SSH a la VM y ejecuta (reemplaza `TU_USUARIO`):
 ```bash
 sudo apt update
 sudo apt install -y git
-sudo git clone --depth 1 https://github.com/TU_USUARIO/luma-beauty.git /tmp/luma-beauty
+sudo git clone --depth 1 https://github.com/Jhomayra21/luma-beauty.git /tmp/luma-beauty
 sudo rm -f /var/www/html/index.nginx-debian.html
 sudo cp -r /tmp/luma-beauty/. /var/www/html/
 sudo chown -R www-data:www-data /var/www/html
@@ -58,3 +54,4 @@ Los comandos `iptables` de las capturas añaden reglas manuales temporales. Para
 - El formulario de correo es solo una demostración visual; no envía ni almacena correos.
 
 El logo, la marca y los productos son ficticios. Vue y las fuentes se descargan de servicios CDN al abrir la página; hace falta conexión a internet desde el navegador.
+

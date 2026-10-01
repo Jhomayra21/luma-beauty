@@ -29,7 +29,7 @@ sudo apt update
 sudo apt install -y git
 sudo git clone --depth 1 https://github.com/Jhomayra21/luma-beauty.git /tmp/luma-beauty
 sudo rm -f /var/www/html/index.nginx-debian.html
-sudo cp -r /tmp/luma-beauty/. /var/www/html/
+sudo cp /tmp/luma-beauty/index.html /tmp/luma-beauty/styles.css /tmp/luma-beauty/app.js /tmp/luma-beauty/productos.json /var/www/html/
 sudo chown -R www-data:www-data /var/www/html
 ```
 
@@ -37,7 +37,7 @@ Abre en el navegador `http://IP_PUBLICA_DE_TU_VM`. Cuando hagas cambios en GitHu
 
 ```bash
 sudo git -C /tmp/luma-beauty pull
-sudo cp -r /tmp/luma-beauty/. /var/www/html/
+sudo cp /tmp/luma-beauty/index.html /tmp/luma-beauty/styles.css /tmp/luma-beauty/app.js /tmp/luma-beauty/productos.json /var/www/html/
 ```
 
 ## Red de Oracle Cloud
@@ -54,5 +54,6 @@ Los comandos `iptables` de las capturas añaden reglas manuales temporales. Para
 - El formulario de correo es solo una demostración visual; no envía ni almacena correos.
 
 El logo, la marca y los productos son ficticios. Vue y las fuentes se descargan de servicios CDN al abrir la página; hace falta conexión a internet desde el navegador.
+
 
 
